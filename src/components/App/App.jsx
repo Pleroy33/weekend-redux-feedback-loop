@@ -1,17 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import './App.css';
+import { HashRouter as Router, Route } from "react-router-dom";
+import FeedbackForm from '../FeedbackForm/FeedbackForm';
+import { useDispatch, useSelector } from 'react-redux';
 
 function App() {
+  
 
   return (
-    <div className='App'>
-      <header className='App-header'>
-        <h1 className='App-title'>Feedback!</h1>
-        <h4>Don't forget it!</h4>
-      </header>
+    <div>
+    <Router>
+    <Route path= "/" exact>
+      <FeedbackForm question="How are you feeling today?" 
+      direction='Please choose between 1-5 with 5 being the highest'
+      viewName='Feeling'
+      />
+    </Route>
+   
+
+    </Router>
+    
     </div>
-  );
+  
+  )
 }
 
 export default App;
