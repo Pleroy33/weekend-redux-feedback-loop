@@ -1,33 +1,24 @@
 import React from 'react';  //bring in react 
-import axios from 'axios';  //bring in axios if needed for CRUD endpoints
-import { HashRouter as Router, Route, Link } from "react-router-dom";//bring in Hashrouter for path usage
-import store from '../../store';
 import { useState } from 'react';//bring in useState for local state
 import { useDispatch } from 'react-redux'; //bring in useDispatch for reducers 
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';//
 
-
-function FeedbackForm({ question, direction, viewName, routePath,inputType }) {
-    console.log('in viewName feedback form', viewName)
+function UnderstandingForm() {
+    console.log('in viewName feedback form')
     const reduxStore = useSelector(store => store);
     const history = useHistory();
 
-    const [input, setInput] = useState('');
+    const [newUnderstanding, setNewUnderStanding] = useState('');
     const dispatch = useDispatch();
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        const newInput = { input };
-        console.log('Submitting newInput:', newInput);
-        dispatch({ type: "Set_New_Input", payload: newInput });
-        setInput('')
-        history.push(routePath)
+        console.log('Submitting newUnderstanding:', newUnderstanding);
+        dispatch({ type: "SET_UNDERSTANDING", payload: newUnderstanding });
+        setNewUnderStanding('')
+        history.push('/support')
     }
-
-
-
-
     return (
         <>
             <div className='App'>
@@ -36,10 +27,11 @@ function FeedbackForm({ question, direction, viewName, routePath,inputType }) {
                     <h4>Don't forget it!</h4>
 
                 </header>
-                <h2>{question}</h2>
-                <p>{direction}</p>
+                <h2>How well are you understanding the content?</h2>
+                <p>Please choose between 1-5 with 5 being the highest</p>
                 <form onSubmit={handleSubmit}>
-                    <input type={inputType} placeholder='Please answer here' value={input} onChange={(event) => setInput(event.target.value)} />
+                    <label htmlFor ="understanding">Please answer here</label>
+                    <input type="number" id="understanding"  min="1"  max="5" value={newUnderstanding} onChange={(event) => setNewUnderStanding(event.target.value)} />
                     <button type="submit" data-testid="next">
                         Next
                     </button>
@@ -54,4 +46,4 @@ function FeedbackForm({ question, direction, viewName, routePath,inputType }) {
     )
 }
 
-export default FeedbackForm
+export default UnderstandingForm

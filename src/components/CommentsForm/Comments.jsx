@@ -1,33 +1,23 @@
 import React from 'react';  //bring in react 
-import axios from 'axios';  //bring in axios if needed for CRUD endpoints
-import { HashRouter as Router, Route, Link } from "react-router-dom";//bring in Hashrouter for path usage
-import store from '../../store';
 import { useState } from 'react';//bring in useState for local state
 import { useDispatch } from 'react-redux'; //bring in useDispatch for reducers 
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';//
 
-
-function FeedbackForm({ question, direction, viewName, routePath,inputType }) {
-    console.log('in viewName feedback form', viewName)
+function CommentsForm(){
     const reduxStore = useSelector(store => store);
     const history = useHistory();
 
-    const [input, setInput] = useState('');
+    const [newComments, setNewComments] = useState('');
     const dispatch = useDispatch();
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        const newInput = { input };
-        console.log('Submitting newInput:', newInput);
-        dispatch({ type: "Set_New_Input", payload: newInput });
-        setInput('')
-        history.push(routePath)
+        console.log('Submitting newComments:', newComments);
+        dispatch({ type: "SET_COMMENTS", payload: newComments });
+        setNewComments('')
+        history.push('/review')
     }
-
-
-
-
     return (
         <>
             <div className='App'>
@@ -36,10 +26,11 @@ function FeedbackForm({ question, direction, viewName, routePath,inputType }) {
                     <h4>Don't forget it!</h4>
 
                 </header>
-                <h2>{question}</h2>
-                <p>{direction}</p>
+                <h2>Any comments you want to leave?</h2>
+                
                 <form onSubmit={handleSubmit}>
-                    <input type={inputType} placeholder='Please answer here' value={input} onChange={(event) => setInput(event.target.value)} />
+                    <label htmlFor ="comments"> Please answer here </label>
+                    <input type="text" id="comments"  value={newComments} onChange={(event) => setNewComments(event.target.value)} />
                     <button type="submit" data-testid="next">
                         Next
                     </button>
@@ -54,4 +45,4 @@ function FeedbackForm({ question, direction, viewName, routePath,inputType }) {
     )
 }
 
-export default FeedbackForm
+export default CommentsForm

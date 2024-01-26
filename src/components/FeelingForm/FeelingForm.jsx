@@ -1,33 +1,23 @@
 import React from 'react';  //bring in react 
-import axios from 'axios';  //bring in axios if needed for CRUD endpoints
-import { HashRouter as Router, Route, Link } from "react-router-dom";//bring in Hashrouter for path usage
-import store from '../../store';
 import { useState } from 'react';//bring in useState for local state
 import { useDispatch } from 'react-redux'; //bring in useDispatch for reducers 
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';//
 
-
-function FeedbackForm({ question, direction, viewName, routePath,inputType }) {
-    console.log('in viewName feedback form', viewName)
+function FeelingForm() {
     const reduxStore = useSelector(store => store);
     const history = useHistory();
 
-    const [input, setInput] = useState('');
+    const [newFeeling, setNewFeeling] = useState('');
     const dispatch = useDispatch();
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        const newInput = { input };
-        console.log('Submitting newInput:', newInput);
-        dispatch({ type: "Set_New_Input", payload: newInput });
-        setInput('')
-        history.push(routePath)
+        console.log('Submitting newFeeling:', newFeeling);
+        dispatch({ type: "SET_FEELING", payload: newFeeling });
+        setNewFeeling('')
+        history.push('/understanding')
     }
-
-
-
-
     return (
         <>
             <div className='App'>
@@ -36,10 +26,11 @@ function FeedbackForm({ question, direction, viewName, routePath,inputType }) {
                     <h4>Don't forget it!</h4>
 
                 </header>
-                <h2>{question}</h2>
-                <p>{direction}</p>
+                <h2>How are you feeling today?</h2>
+                <h3>Please choose between 1-5 with 5 being the highest</h3>
                 <form onSubmit={handleSubmit}>
-                    <input type={inputType} placeholder='Please answer here' value={input} onChange={(event) => setInput(event.target.value)} />
+                    <label htmlFor="Feeling">Please answer here</label>
+                    <input type="number" id="Feeling" min="1" max="5" value={newFeeling} onChange={(event) => setNewFeeling(event.target.value)} />
                     <button type="submit" data-testid="next">
                         Next
                     </button>
@@ -54,4 +45,4 @@ function FeedbackForm({ question, direction, viewName, routePath,inputType }) {
     )
 }
 
-export default FeedbackForm
+export default FeelingForm

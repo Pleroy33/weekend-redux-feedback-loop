@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React from 'react';
 import './App.css';
 import { HashRouter as Router, Route } from "react-router-dom";
-import FeedbackForm from '../FeedbackForm/FeedbackForm';
-import { useDispatch, useSelector } from 'react-redux';
+import FeelingForm from '../FeelingForm/FeelingForm';
+import UnderstandingForm from '../UnderstandingForm/UnderstandingForm';
+import SupportForm from '../SupportForm/SupportForm';
+import CommentsForm from '../CommentsForm/Comments';
+import PostRatings from '../Review/Review';
 
 function App() {
   
@@ -12,12 +14,32 @@ function App() {
     <div>
     <Router>
     <Route path= "/" exact>
-      <FeedbackForm question="How are you feeling today?" 
-      direction='Please choose between 1-5 with 5 being the highest'
-      viewName='Feeling'
-      />
+      <FeelingForm/>
     </Route>
    
+    <Route path= "/understanding" >
+      <UnderstandingForm/>
+    </Route>
+
+    <Route path= "/support" >
+      <SupportForm />
+    </Route>
+
+    <Route path= "/comments" >
+      <CommentsForm/>
+    </Route>
+
+    <Route path= "/review" >
+      <PostRatings/>
+    </Route>
+
+    
+
+
+
+
+
+
 
     </Router>
     
