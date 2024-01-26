@@ -30,7 +30,7 @@ function FeelingForm() {
                 <h3>Please choose between 1-5 with 5 being the highest</h3>
                 <form onSubmit={handleSubmit}>
                     <label htmlFor="Feeling">Please answer here</label>
-                    <input type="number" id="Feeling" min="1" max="5" value={newFeeling} onChange={(event) => setNewFeeling(event.target.value)} />
+                    <input type="number" id="Feeling" min="1" max="5" data-testid="input" value={newFeeling} onChange={(event) => setNewFeeling(event.target.value)} />
                     <button type="submit" data-testid="next">
                         Next
                     </button>

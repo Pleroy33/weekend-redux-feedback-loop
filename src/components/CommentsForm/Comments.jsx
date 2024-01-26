@@ -30,7 +30,7 @@ function CommentsForm(){
                 
                 <form onSubmit={handleSubmit}>
                     <label htmlFor ="comments"> Please answer here </label>
-                    <input type="text" id="comments"  value={newComments} onChange={(event) => setNewComments(event.target.value)} />
+                    <input type="text" id="comments"  data-testid="input" value={newComments} onChange={(event) => setNewComments(event.target.value)} />
                     <button type="submit" data-testid="next">
                         Next
                     </button>
