@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'; //bring in useDispatch for reducers
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';//
 
-function SupportForm(){
+function SupportForm() {
     const reduxStore = useSelector(store => store);
     const history = useHistory();
 
@@ -29,8 +29,8 @@ function SupportForm(){
                 <h2>How well are you being supported?</h2>
                 <p>Please choose between 1-5 with 5 being the highest</p>
                 <form onSubmit={handleSubmit}>
-                    <label htmlFor ="Support"> Please answer here </label>
-                    <input type="number" id="Support"  min="1"  max="5" data-testid="input" value={newSupport} onChange={(event) => setNewSupport(event.target.value)} />
+                    <label htmlFor="Support"> Please answer here </label>
+                    <input type="number" id="Support" min="1" max="5" data-testid="input" value={newSupport} onChange={(event) => setNewSupport(event.target.value)} />
                     <button type="submit" data-testid="next">
                         Next
                     </button>

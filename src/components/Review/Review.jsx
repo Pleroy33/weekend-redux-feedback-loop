@@ -34,7 +34,7 @@ function PostRatings() {
                 console.error(error)
 
             })
-
+        history.push('/success')
     };
 
 

@@ -30,8 +30,8 @@ function UnderstandingForm() {
                 <h2>How well are you understanding the content?</h2>
                 <p>Please choose between 1-5 with 5 being the highest</p>
                 <form onSubmit={handleSubmit}>
-                    <label htmlFor ="understanding">Please answer here</label>
-                    <input type="number" id="understanding"  min="1"  max="5" data-testid="input" value={newUnderstanding} onChange={(event) => setNewUnderStanding(event.target.value)} />
+                    <label htmlFor="understanding">Please answer here</label>
+                    <input type="number" id="understanding" min="1" max="5" data-testid="input" value={newUnderstanding} onChange={(event) => setNewUnderStanding(event.target.value)} />
                     <button type="submit" data-testid="next">
                         Next
                     </button>
